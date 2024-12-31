@@ -1,4 +1,6 @@
-import { Calendar, Home, BookmarkPlus, Search, Settings } from "lucide-react"
+"use client"
+
+import { Calendar, Home, BookmarkPlus, Telescope, Settings } from "lucide-react"
 
 import {
   Sidebar,
@@ -10,32 +12,36 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar"
+import Link from "next/link"
+
+
+const username = "username";
 
 // Menu items.
 const items = [
   {
     title: "Home",
-    url: "#",
+    url: "/",
     icon: Home,
   },
   {
-    title: "Save Location",
-    url: "#",
+    title: "Add Location",
+    url: "/bookmark",
     icon: BookmarkPlus,
   },
   {
     title: "Explore",
-    url: "#",
-    icon: Search,
+    url: "/explore",
+    icon: Telescope,
   },
   {
     title: "Events",
-    url: "#",
+    url: "/events",
     icon: Calendar,
   },
   {
     title: "Settings",
-    url: "#",
+    url: `/user/${username}/settings`,
     icon: Settings,
   },
 ]
@@ -51,10 +57,10 @@ export function AppSidebar() {
               {items.map((item) => (
                 <SidebarMenuItem key={item.title}>
                   <SidebarMenuButton asChild>
-                    <a href={item.url}>
+                    <Link href={item.url}>
                       <item.icon />
                       <span>{item.title}</span>
-                    </a>
+                    </Link>
                   </SidebarMenuButton>
                 </SidebarMenuItem>
               ))}
