@@ -5,6 +5,7 @@ import Link from "next/link"
 import { Calendar, Home, BookmarkPlus, Telescope } from "lucide-react"
 import { Sidebar, SidebarContent, SidebarGroup, SidebarGroupContent, SidebarGroupLabel, SidebarMenu, SidebarMenuButton, SidebarMenuItem, } from "@/components/ui/sidebar"
 import ProfileSidebarSignedIn from "./profile-signedin";
+import ProfileSidebar from "./profile-sidebar";
 
 const username = "username";
 
@@ -36,7 +37,7 @@ export function AppSidebar() {
   return (
     <Sidebar>
       <SidebarContent>
-        <ProfileSidebarSignedIn />
+        <ProfileSidebar signedIn={false} />
         <SidebarGroup>
           <SidebarGroupLabel>Application</SidebarGroupLabel>
           <SidebarGroupContent>

@@ -1,18 +1,18 @@
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+import ProfileSidebarSignedIn from "./profile-signedin";
+import ProfileSidebarSignedOut from "./profile-signedout";
 
 interface ProfileSidebarProps {
-  username: string;
-  imageUrl?: string;
+  signedIn: boolean;
+  username?: string;
 }
 
-const ProfileSidebar = ({ username, imageUrl }: ProfileSidebarProps) => {
+const ProfileSidebar = ({ signedIn, username }: ProfileSidebarProps) => {
   return (
-    <div className="flex items-center justify-center">
-      <Avatar className="mb-2">
-        <AvatarImage src={imageUrl || "https://github.com/shadcn.png"} />
-        <AvatarFallback>{username}</AvatarFallback>
-      </Avatar>
-    </div>
+    signedIn ? (
+      <ProfileSidebarSignedIn username={username || "Guest"} />
+    ) : (
+      <ProfileSidebarSignedOut />
+    )
   );
 }
 

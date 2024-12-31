@@ -1,30 +1,39 @@
-// Menu items.
-import { User, Settings, LogOut } from "lucide-react";
-import { SidebarGroup, SidebarGroupContent, SidebarGroupLabel, SidebarMenu, SidebarMenuButton, SidebarMenuItem, } from "@/components/ui/sidebar"
-import ProfileSidebar from "./profile-sidebar";
 import Link from "next/link";
 
-const username = "username";
+import { User, Settings, LogOut } from "lucide-react";
+import { SidebarGroup, SidebarGroupContent, SidebarGroupLabel, SidebarMenu, SidebarMenuButton, SidebarMenuItem, } from "@/components/ui/sidebar"
 
-const accountItems = [
-  {
-    title: "Profile",
-    url: `/user/${username}`,
-    icon: User,
-  }, 
-  {
-    title: "Settings",
-    url: `/user/username/settings`,
-    icon: Settings,
-  },
-];
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 
-const ProfileSidebarSignedIn = () => {
+interface ProfileSidebarSignedInProps {
+  username: string;
+  imageUrl?: string;
+}
+
+const ProfileSidebarSignedIn = ({ username, imageUrl }: ProfileSidebarSignedInProps) => {
+  const accountItems = [
+    {
+      title: "Profile",
+      url: `/user/${username}`,
+      icon: User,
+    }, 
+    {
+      title: "Settings",
+      url: `/user/username/settings`,
+      icon: Settings,
+    },
+  ];
+
   return (
     <SidebarGroup>
       <SidebarGroupLabel>Account</SidebarGroupLabel>
       <SidebarGroupContent>  
-        <ProfileSidebar username={username} />
+        <div className="flex items-center justify-center">
+          <Avatar className="mb-2">
+            <AvatarImage src={imageUrl || "https://github.com/shadcn.png"} />
+            <AvatarFallback>{username}</AvatarFallback>
+          </Avatar>
+        </div>
         <SidebarMenu>
           {accountItems.map((item) => (
             <SidebarMenuItem key={item.title}>
