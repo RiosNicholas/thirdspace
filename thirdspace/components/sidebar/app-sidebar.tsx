@@ -2,27 +2,12 @@
 
 import Link from "next/link"
 
-import { User, LogOut, Calendar, Home, BookmarkPlus, Telescope, Settings } from "lucide-react"
+import { Calendar, Home, BookmarkPlus, Telescope } from "lucide-react"
 import { Sidebar, SidebarContent, SidebarGroup, SidebarGroupContent, SidebarGroupLabel, SidebarMenu, SidebarMenuButton, SidebarMenuItem, } from "@/components/ui/sidebar"
-import ProfileSidebar from "./profile-sidebar";
-import { Button } from "../ui/button";
-
+import ProfileSidebarSignedIn from "./profile-signedin";
 
 const username = "username";
 
-// Menu items.
-const accountItems = [
-  {
-    title: "Profile",
-    url: `/user/${username}`,
-    icon: User,
-  }, 
-  {
-    title: "Settings",
-    url: `/user/username/settings`,
-    icon: Settings,
-  },
-]
 const appItems = [
   {
     title: "Home",
@@ -51,30 +36,7 @@ export function AppSidebar() {
   return (
     <Sidebar>
       <SidebarContent>
-        <SidebarGroup>
-          <SidebarGroupLabel>Account</SidebarGroupLabel>
-          <SidebarGroupContent>  
-            <ProfileSidebar username={username} />
-            <SidebarMenu>
-              {accountItems.map((item) => (
-                <SidebarMenuItem key={item.title}>
-                  <SidebarMenuButton asChild>
-                    <Link href={item.url}>
-                      <item.icon />
-                      <span>{item.title}</span>
-                    </Link>
-                  </SidebarMenuButton>
-                </SidebarMenuItem>
-              ))}
-              <SidebarMenuItem>
-                <SidebarMenuButton>
-                  <LogOut />
-                  <span>Log Out</span>
-                </SidebarMenuButton>
-              </SidebarMenuItem>
-            </SidebarMenu>
-          </SidebarGroupContent>
-        </SidebarGroup>
+        <ProfileSidebarSignedIn />
         <SidebarGroup>
           <SidebarGroupLabel>Application</SidebarGroupLabel>
           <SidebarGroupContent>
