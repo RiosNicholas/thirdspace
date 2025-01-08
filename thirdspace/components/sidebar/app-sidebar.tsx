@@ -1,7 +1,7 @@
 "use client"
 
 import Link from "next/link"
-
+import { SignedIn,SignedOut, useUser } from "@clerk/nextjs"
 import { Calendar, Home, BookmarkPlus, Telescope } from "lucide-react"
 import { Sidebar, SidebarContent, SidebarGroup, SidebarGroupContent, SidebarGroupLabel, SidebarMenu, SidebarMenuButton, SidebarMenuItem, } from "@/components/ui/sidebar"
 import ProfileSidebarSignedIn from "./profile-signedin";
@@ -34,10 +34,21 @@ const appItems = [
 ]
 
 export function AppSidebar() {
+
+  const {user} = useUser();
   return (
     <Sidebar>
       <SidebarContent>
-        <ProfileSidebar signedIn={false} />
+        <SignedIn>
+          <ProfileSidebar 
+            signedIn={true}
+            username={user?.username || user?.firstName || "Guest"}
+          />
+        </SignedIn>
+        <SignedOut>
+         <ProfileSidebar signedIn={false} />
+        </SignedOut>
+        
         <SidebarGroup>
           <SidebarGroupLabel>Application</SidebarGroupLabel>
           <SidebarGroupContent>

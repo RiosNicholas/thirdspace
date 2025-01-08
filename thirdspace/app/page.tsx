@@ -1,11 +1,18 @@
+// app/page.tsx
 "use client"
+import { SignedIn, SignedOut, SignInButton, useUser } from "@clerk/nextjs";
 
-export default function Home() {
+export default function HomePage() {
+  const {user} = useUser()
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        Landing Page goes here if signed out. Dashboard of some sort if signed in. (conditional rendering)
-      </main>
+    <div>
+      <SignedIn>
+        <p>Welcome Back! Start Exploring</p>
+      </SignedIn>
+
+      <SignedOut>
+        <p>Welcome to Third Space! Please LogIn </p>
+      </SignedOut>
     </div>
   );
 }

@@ -9,7 +9,7 @@ interface ProfileSidebarProps {
 const ProfileSidebar = ({ signedIn, username }: ProfileSidebarProps) => {
   return (
     signedIn ? (
-      <ProfileSidebarSignedIn username={username || "Guest"} />
+      <ProfileSidebarSignedIn username={username || "Guest"}  />
     ) : (
       <ProfileSidebarSignedOut />
     )
