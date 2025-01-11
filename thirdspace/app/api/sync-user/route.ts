@@ -4,7 +4,6 @@ import { currentUser } from "@clerk/nextjs/server";
 
 export async function POST() {
   try {
-    // Get the current Clerk user
     const user = await currentUser();
 
     if (!user) {
@@ -13,13 +12,11 @@ export async function POST() {
         { status: 401 }
       );
     }
-
-    // Extract user data
     const clerkUserId = user.id;
     const userName = user.username || null;
     const fullName = user.fullName || null;
 
-    // Upsert the user into the Supabase database
+
     const { data, error } = await supabase
       .from("users")
       .upsert(
@@ -29,7 +26,7 @@ export async function POST() {
           fullname: fullName,
           last_logged_in: new Date().toISOString(),
         },
-        { onConflict: "clerk_user_id" } // Prevent duplicates based on clerk_user_id
+        { onConflict: "clerk_user_id" } 
       )
       .single();
 
@@ -40,8 +37,7 @@ export async function POST() {
         { status: 500 }
       );
     }
-
-    // Return success response
+    console.log('Sucess')
     return NextResponse.json({
       message: "User synced successfully",
       user: data,

@@ -1,13 +1,8 @@
 import { createRouteMatcher, clerkMiddleware } from '@clerk/nextjs/server';
+import { redirect } from 'next/dist/server/api-utils';
+import { NextResponse } from 'next/server';
 
-/// we can adjust this later and add pages that need to be protected
-const isProtectedRoute = createRouteMatcher([
-  '/pages(.*)',
-])
-
-export default clerkMiddleware((auth, req) => {
-  if (isProtectedRoute(req)) auth.protect();
-});
+export default clerkMiddleware();
 
 
 
