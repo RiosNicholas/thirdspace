@@ -16,8 +16,8 @@ const appItems = [
     icon: Home,
   },
   {
-    title: "Add Location",
-    url: "/bookmark",
+    title: "Add Space",
+    url: "/add-space",
     icon: BookmarkPlus,
   },
   {
