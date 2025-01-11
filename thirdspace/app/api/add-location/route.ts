@@ -6,7 +6,7 @@ export async function POST(req: Request) {
 
     const { name, address, notes, pricing, website, type_id, tags, user_id } =
       await req.json();
-      
+
     const { data: locationData, error: locationError } = await supabase
       .from("location")
       .insert([
@@ -25,7 +25,6 @@ export async function POST(req: Request) {
 
     const locationId = locationData[0].id; 
 
-    // Step 2: Link the location to its type in `location_type`
     const { error: typeError } = await supabase.from("location_type").insert([
       {
         id: locationId, 
